@@ -111,8 +111,8 @@ sub kill_ip() {
         return;
     }
     print "Kill : $ip\n";
-    #system("iptables -I INPUT 1 -i eth0 -s $ip -j DROP");
-    #system("iptables -I OUTPUT 1 -o eth0 -d $ip -j DROP");
+    #system("iptables -I INPUT 1 -i eth0 -s $ip/$class -j DROP");
+    #system("iptables -I OUTPUT 1 -o eth0 -d $ip/$class -j DROP");
     system("firewall-cmd --zone=drop --add-source=$ip/$class");
     open(KILLED,">>$killed_file");
     print KILLED "$ip/$class\t" . time() . "\n";
